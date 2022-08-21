@@ -1,19 +1,59 @@
 <!doctype html>
 
 <head>
+	<link rel="stylesheet" type="text/css" href="./style.css">
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
+		function setSearchEngine() {
+			let selectedEngine = document.querySelector("input[name=engine]:checked").value;
+			let actions = {
+   				"google": "https://www.google.com/search",
+				"duckDuckGo": "https://duckduckgo.com/",
+				"bing": "https://bing.com/search",
+				"ask": "https://ask.com/web"
+			};
+			let searchForm = document.getElementById("searchForm");
+			searchForm.setAttribute("action", actions[selectedEngine]);
+			// console.log(searchForm); does nothing
+		};
     window.addEventListener("load", function(){
-        // TODO: register the handler
+        let searchForm = document.getElementById("searchForm");
+		let inputValue = document.querySelector("input[name=q]");
+		let selectedEngine = document.querySelector("input[name=engine]:checked"); // will not allow .value;
+		console.log(searchForm); // prints the entire tag, method, and action
+		console.log(inputValue); // prints the entire tag, name, and id
+		console.log(selectedEngine); // null
+		//console.log(selectedEngine.value);
+		//setSearchEngine(); causes alerts to disappear
+		searchForm.addEventListener("submit", function(event) {
+			 // setSearchEngine(); works if I don't add any checks
+			if (inputValue.value == "") {
+				window.alert("Please submit a value!");
+				event.preventDefault();
+			} 
+			setSearchEngine(); // works up to here aka works if I don't try to force one of the radio options to be selected
+			
+			// //setSearchEngine(); causes my selected engine alert to disappear
+			// if (selectedEngine !== "google" && selectedEngine !=="duckDuckGo" && selectedEngine !== "bing" && selectedEngine !=="ask") { // also can't put .value on any of these. Always asks for selection because value always null
+			// 	window.alert("Please select a search engine!");
+			// 	event.preventDefault();
+			// }
+			// //setSearchEngine(); 
+		}); 
+		
     });
 	</script>
 </head>
 
 <body>
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<form id="searchForm" method="GET" action="">
+		<input name="q" id="input">
+		<label>Google<input type="radio" name="engine" value="google"></label>
+		<label>DuckDuckGo<input type="radio" name="engine" value="duckDuckGo"></label>
+		<label>Bing<input type="radio" name="engine" value="bing"></label>
+		<label>Ask<input type="radio" name="engine" value="ask"></label>
+		<button type="submit" value="Go!">Search</button>
 	</form>
 
 </body>
