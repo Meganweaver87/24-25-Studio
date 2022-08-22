@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(206, 194, 194);
+}
+
+button {
+    background-color: rgb(230, 230, 230);
+    border: 1px;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+input {
+    background-color:rgb(230, 230, 230);
+    border: 1px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+label {
+    background-color: rgb(230, 230, 230);
+    padding: 4px;
+    margin: 6px;
+    border-radius: 4px;
+}
